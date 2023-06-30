@@ -20,7 +20,7 @@ from django.contrib.auth.views import (
 from django.urls import path
 
 import authentication.views
-from reviews.views import feed, create_ticket
+from reviews.views import feed, create_ticket, subscription, create_review,  my_posts, update_ticket, update_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,5 +37,10 @@ urlpatterns = [
     ), name='password_change_done'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('feed/', feed, name='feed'),
-    path('create-ticket/', create_ticket, name='create_ticket')
+    path('create-ticket/', create_ticket, name='create_ticket'),
+    path('update-ticket/', update_ticket, name='update_ticket'),
+    path('create-review/', create_review, name='create_review'),
+    path('update-review/', update_review, name='update_review'),
+    path('my-posts/', my_posts, name='my_posts'),
+    path('subscription/', subscription, name='subscription'),
 ]
