@@ -2,6 +2,29 @@
 {% block content %}
 {% if user.is_authenticated %}
     <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Create a review</h1>
+    <h1>Créer une critique</h1>
+    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+        {% if ticket.user == request.user %}
+        <p>Vous avez demandé une critique</p>
+        {% else %}
+        <p>{{ ticket.user }} a demandé une critique</p>
+        {% endif %}
+    
+        <p>{{ ticket.formatted_time_created }}</p>
+        <p>{{ ticket.title }}</p>
+        <p>{{ ticket.description }}</p>
+        <p>
+            {% if ticket.image_exists %}
+            <img src="{{ ticket.image.url }}" alt="Ticket Image">
+            {% endif %}
+        </p>
+    </div>
+    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
 {% endif %}
 {% endblock content %}

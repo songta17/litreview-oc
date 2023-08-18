@@ -2,6 +2,63 @@
 {% block content %}
 {% if user.is_authenticated %}
     <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Feed page</h1>
+    <h1>Flux</h1>
+    <div>
+        <a href="{% url 'create_ticket' %}">
+            <button class="btn">Demander une critique</button>
+        </a>
+        <a href="{% url 'create_review_and_ticket' %}">
+            <button class="btn">Publier une critique</button>
+        </a>
+    </div>
+    {% for item in tickets_and_reviews_sorted %}
+        {% if item.content_type == 'TICKET' %}
+            <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+                {% if item.user == request.user %}
+                    <p>Vous avez demandé une critique</p>
+                {% else %}
+                    <p>{{ item.user }} a demandé une critique</p>
+                {% endif %}
+
+                <p>{{ item.formatted_time_created }}</p>
+                <p>{{ item.title }}</p>
+                <p>{{ item.description }}</p>
+                <p>
+                    {% if item.image_exists %}
+                        <img src="{{ item.image.url }}" alt="Ticket Image">
+                    {% endif %}
+                </p>
+                {% if item.has_review %}
+                    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+                        <p>Vous avez publié une critique / posted a review</p>
+                        <p>{{ item.get_review.formatted_time_created }}</p>
+                        <p>{{ item.get_review.headline }} - {{ item.get_review.rating_display }}</p>
+                        <p>{{ item.get_review.body }}</p>
+                        {% if item.get_review.user == request.user %}
+                        <a href="{% url update_review item.get_review.id }">
+                            <button class="btn">Éditer / supprimer la critique</button>
+                        </a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    {% if not item.get_review %}
+                        <a href="{% url 'create_review' item.id %}">
+                            <button class="btn">Créer une critique</button>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% elif item.content_type == 'REVIEW' %}
+            <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+                <p>Vous avez publié une critique</p>
+                <p>{{ item.formatted_time_created }}</p>
+                <p>{{ item.headline }} - {{ item.rating_display }}</p>
+                <p>{{ item.body }}</p>
+                {% if item.user == request.user %}
+                    <a href="{{ update_review_url }}">Éditer / supprimer la critique</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
 {% endblock content %}

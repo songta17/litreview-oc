@@ -1,0 +1,10 @@
+<h3>{{ ticket.title }}</h3>
+<div>
+  fais chier
+    <p>
+      <img src="{{ ticket.image.url }}" alt="ee" />
+    </p>
+    {% if ticket.description|length > 0 %}
+        <p class="description">{{ ticket.description }}</p>
+    {% endif %}
+</div>

@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-    <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Update a ticket</h1>
+<p>Vous êtes connecté en tant que {{ request.user }}!</p>
+<h1>Editer un ticket</h1>
+<form method="POST" action="{% url 'update_ticket' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ update_form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
 {% endif %}
 {% endblock content %}
