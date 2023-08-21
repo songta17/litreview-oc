@@ -23,7 +23,7 @@ from django.contrib.auth.views import (
 from django.urls import path
 
 import authentication.views
-from reviews.views import feed, create_ticket, subscription, create_review, create_review_and_ticket, my_posts, update_ticket, update_review
+from reviews.views import feed, create_ticket, subscription, create_review, create_review_and_ticket, my_posts, update_ticket, update_review, delete_ticket, delete_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,10 +42,12 @@ urlpatterns = [
     path('feed/', feed, name='feed'),
     path('create-ticket/', create_ticket, name='create_ticket'),
     path('update-ticket/<int:ticket_id>/', update_ticket, name='update_ticket'),
+    path('delete-ticket/<int:ticket_id>/', delete_ticket, name='delete_ticket'),
     path('create-review/<int:ticket_id>/', create_review, name='create_review'),
     path('create-review/', create_review_and_ticket,
          name='create_review_and_ticket'),
     path('update-review/<int:review_id>/', update_review, name='update_review'),
+    path('delete-review/<int:review_id>/', delete_review, name='delete_review'),
     path('my-posts/', my_posts, name='my_posts'),
     path('subscription/', subscription, name='subscription'),
 ]

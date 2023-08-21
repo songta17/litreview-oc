@@ -35,9 +35,9 @@
                         <p>{{ item.get_review.headline }} - {{ item.get_review.rating_display }}</p>
                         <p>{{ item.get_review.body }}</p>
                         {% if item.get_review.user == request.user %}
-                        <a href="{% url update_review item.get_review.id }">
+                        <!-- <a href="{% url 'update_review' item.get_review.id %}">
                             <button class="btn">Éditer / supprimer la critique</button>
-                        </a>
+                        </a> -->
                         {% endif %}
                     </div>
                 {% else %}
@@ -54,9 +54,9 @@
                 <p>{{ item.formatted_time_created }}</p>
                 <p>{{ item.headline }} - {{ item.rating_display }}</p>
                 <p>{{ item.body }}</p>
-                {% if item.user == request.user %}
+                <!-- {% if item.user == request.user %}
                     <a href="{{ update_review_url }}">Éditer / supprimer la critique</a>
-                {% endif %}
+                {% endif %} -->
             </div>
         {% endif %}
     {% endfor %}

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from reviews.models import Ticket, Review
-from reviews.form import NewTicketForm, NewReviewForm
+from reviews.form import NewTicketForm, NewReviewForm, FollowUserForm
 from django.views.decorators.csrf import csrf_protect
 from django.db import IntegrityError
-from django.urls import reverse
+# from django.urls import reverse
 import ipdb
 from itertools import chain
 from django.db.models import Value, CharField
@@ -72,16 +72,32 @@ def create_ticket(request):
 @login_required
 def update_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    update_form = form.TicketForm(instance=ticket)
+    update_form = NewTicketForm(instance=ticket)
     if request.method == 'POST':
-        update_form = forms.TicketForm(request.POST, instance=ticket)
+        update_form = NewTicketForm(
+            request.POST, request.FILES, instance=ticket)
         if update_form.is_valid():
             update_form.save()
-            return redirect('feed')
+            return redirect('my_posts')
     context = {
-        'update_form': update_form
+        'update_form': update_form,
+        'ticket': ticket
     }
     return render(request, 'update_ticket.html', context)
+
+
+@login_required
+def delete_ticket(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        ticket.delete()
+        return redirect('my_posts')
+
+    context = {
+        'ticket': ticket
+    }
+    return render(request, 'delete_ticket.html', context)
 
 
 @login_required
@@ -147,11 +163,43 @@ def create_review_and_ticket(request):
     # return render(request, 'create_review.html', {'form': form})
 
 
-@ login_required
-def update_review(request, ticket_id):
-    return render(request, 'update_review.html')
+@login_required
+def update_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    update_form = NewReviewForm(instance=review)
+    ticket = review.ticket
+    if request.method == 'POST':
+        update_form = NewReviewForm(request.POST, instance=review)
+        if update_form.is_valid():
+            update_form.save()
+            return redirect('my_posts')
+    context = {
+        'update_form': update_form,
+        'review': review,
+        'ticket': ticket,
+    }
+    return render(request, 'update_review.html', context)
 
 
-@ login_required
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    if request.method == 'POST':
+        review.delete()
+        return redirect('my_posts')
+
+    context = {
+        'review': review
+    }
+    return render(request, 'delete_review.html', context)
+
+
+@login_required
 def subscription(request):
-    return render(request, 'subscription.html')
+    follow_form = FollowUserForm()
+
+    context = {
+        'follow_form': follow_form
+    }
+    return render(request, 'subscription.html', context)

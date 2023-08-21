@@ -4,7 +4,6 @@ from .models import Ticket, Review
 
 
 class NewTicketForm(forms.ModelForm):
-    update_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     title = forms.CharField(max_length=100)
     description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField(widget=forms.FileInput, required=True)
@@ -22,3 +21,8 @@ class NewReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']
+
+
+class FollowUserForm(forms.Form):
+    follow_user = forms.CharField(
+        label="Suivre d'autres utilisateurs", max_length=100)

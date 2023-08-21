@@ -5,10 +5,15 @@
 
     <h2>Suivre d'autres utilisateurs</h2>
     <!-- TODO FORM -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ FollowUserForm.follow_user.label_tag }}
+        {{ FollowUserForm.follow_user }}
+        <button type="submit">Rechercher</button>
+    </form>
 
     <h2>Abonnements</h2>
     <!-- subscription in subscriptions -->
-    <!-- make désincription -->
 
     <h2>Abonnés</h2>
     <!-- subscriber in subscribers -->
