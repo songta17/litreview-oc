@@ -6,13 +6,17 @@
 
     <body>
         <h1>LitReview</h1>
+            {% if user.is_authenticated %}
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'feed' %}">Flux</a></li>
+                        <li><a href="{% url 'my_posts' %}">Mes Posts</a></li>
+                        <li><a href="{% url 'subscription' %}">Abonnements</a></li>
+                        <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                    </ul>
+                </nav>
+            {% endif %}
         {% block content %}{% endblock content %}
-        {% if user.is_authenticated %}
-            <p>
-                Vous êtes connecté en tant que {{ request.user }}.
-                <a href="{% url 'logout' %}">Se déconnecter</a>
-            </p>
-        {% endif %}
     </body>
 
 </html>

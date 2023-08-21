@@ -14,13 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+# dosssier pour les static et staticfile
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView)
 from django.urls import path
 
 import authentication.views
-from reviews.views import feed, create_ticket, subscription, create_review,  my_posts, update_ticket, update_review
+from reviews.views import feed, create_ticket, subscription, create_review, create_review_and_ticket, my_posts, update_ticket, update_review, delete_ticket, delete_review
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,9 +41,18 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('feed/', feed, name='feed'),
     path('create-ticket/', create_ticket, name='create_ticket'),
-    path('update-ticket/', update_ticket, name='update_ticket'),
-    path('create-review/', create_review, name='create_review'),
-    path('update-review/', update_review, name='update_review'),
+    path('update-ticket/<int:ticket_id>/', update_ticket, name='update_ticket'),
+    path('delete-ticket/<int:ticket_id>/', delete_ticket, name='delete_ticket'),
+    path('create-review/<int:ticket_id>/', create_review, name='create_review'),
+    path('create-review/', create_review_and_ticket,
+         name='create_review_and_ticket'),
+    path('update-review/<int:review_id>/', update_review, name='update_review'),
+    path('delete-review/<int:review_id>/', delete_review, name='delete_review'),
     path('my-posts/', my_posts, name='my_posts'),
     path('subscription/', subscription, name='subscription'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

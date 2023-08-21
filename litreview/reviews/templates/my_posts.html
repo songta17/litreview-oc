@@ -2,6 +2,45 @@
 {% block content %}
 {% if user.is_authenticated %}
     <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>My posts</h1>
+    <h1>Posts</h1>
+    {% for item in tickets_and_reviews_owner_sorted %}
+        {% if item.content_type == 'TICKET' %}
+        <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+            {% if item.user == request.user %}
+                <p>Vous avez demandé une critique</p>
+            {% else %}
+                <p>{{ item.user }} a demandé une critique</p>
+            {% endif %}
+        
+            <p>{{ item.formatted_time_created }}</p>
+            <p>{{ item.title }}</p>
+            <p>{{ item.description }}</p>
+            <p>
+                {% if item.image_exists %}
+                    <img src="{{ item.image.url }}" alt="Ticket Image">
+                {% endif %}
+            </p>
+            <a href="{% url 'update_ticket' item.id %}">
+                <button class="btn">Modifier</button>
+            </a>
+            <a href="{% url 'delete_ticket' item.id %}">
+                <button class="btn">Supprimer</button>
+            </a>
+        </div>
+        {% elif item.content_type == 'REVIEW' %}
+        <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+            <p>Vous avez publié une critique</p>
+            <p>{{ item.formatted_time_created }}</p>
+            <p>{{ item.headline }} - {{ item.rating_display }}</p>
+            <p>{{ item.body }}</p>
+            <a href="{% url 'update_review' item.id %}">
+                <button class="btn">Modifier</button>
+            </a>
+            <a href="{% url 'delete_review' item.id %}">
+                <button class="btn">Supprimer</button>
+            </a>
+        </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
 {% endblock content %}

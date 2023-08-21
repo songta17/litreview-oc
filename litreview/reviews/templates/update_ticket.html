@@ -2,6 +2,14 @@
 {% block content %}
 {% if user.is_authenticated %}
     <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Update a ticket</h1>
+    <h1>Modifier votre ticket</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ update_form.as_p }}
+        {% if ticket.image %}
+        <img src="{{ ticket.image.url }}" alt="Ticket Image">
+        {% endif %}
+        <button type="submit">Enregistrer</button>
+    </form>
 {% endif %}
 {% endblock content %}

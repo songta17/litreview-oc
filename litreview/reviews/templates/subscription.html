@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if user.is_authenticated %}
-  <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-  <h1>Subsciption page</h1>
-{% endif %}
+  {% if user.is_authenticated %}
+    <h1>Abonnements</h1>
+
+    <h2>Suivre d'autres utilisateurs</h2>
+    <!-- TODO FORM -->
+    <form method="POST">
+        {% csrf_token %}
+        {{ FollowUserForm.follow_user.label_tag }}
+        {{ FollowUserForm.follow_user }}
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <h2>Abonnements</h2>
+    <!-- subscription in subscriptions -->
+
+    <h2>Abonnés</h2>
+    <!-- subscriber in subscribers -->
+  {% endif %}
 {% endblock content %}

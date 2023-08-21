@@ -2,6 +2,11 @@
 {% block content %}
 {% if user.is_authenticated %}
     <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Create a ticket</h1>
+    <h1>Créer un tickets</h1>
+    <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
 {% endif %}
 {% endblock content %}
