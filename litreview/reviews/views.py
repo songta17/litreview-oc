@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from reviews.models import Ticket, Review
+from reviews.models import Ticket, Review, UserFollows
+from authentication.models import User
 from reviews.form import NewTicketForm, NewReviewForm, FollowUserForm
 from django.views.decorators.csrf import csrf_protect
 from django.db import IntegrityError
@@ -8,12 +9,17 @@ from django.db import IntegrityError
 import ipdb
 from itertools import chain
 from django.db.models import Value, CharField
+# from django.contrib import messages
 
 
 @login_required
 def feed(request):
-    tickets = Ticket.objects.all()
-    reviews = Review.objects.all()
+    subscriptions = UserFollows.objects.filter(user=request.user)
+    followed_users = subscriptions.values_list('followed_user', flat=True)
+
+    tickets = Ticket.objects.filter(user__in=followed_users)
+    reviews = Review.objects.filter(user__in=followed_users)
+
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 
@@ -197,9 +203,38 @@ def delete_review(request, review_id):
 
 @login_required
 def subscription(request):
-    follow_form = FollowUserForm()
+    subscriptions = UserFollows.objects.filter(user=request.user)
+    followers = UserFollows.objects.filter(followed_user=request.user)
+
+    if request.method == 'POST':
+        form = FollowUserForm(request.POST)
+        if form.is_valid():
+            follow_user = form.cleaned_data['follow_user']
+            try:
+                followed_user = User.objects.get(username=follow_user)
+            except User.DoesNotExist:
+                form.add_error('follow_user', 'Cet utilisateur n\'existe pas.')
+            else:
+                if not UserFollows.objects.filter(user=request.user, followed_user=followed_user).exists():
+                    UserFollows.objects.create(
+                        user=request.user, followed_user=followed_user)
+                else:
+                    form.add_error(
+                        'follow_user', f'Vous suivez déjà {followed_user.username.capitalize()} dans votre liste d\'abonnements.')
+    else:
+        form = FollowUserForm()
 
     context = {
-        'follow_form': follow_form
-    }
+        'FollowUserForm': form,
+        'subscriptions': subscriptions,
+        'followers': followers}
+
     return render(request, 'subscription.html', context)
+
+
+@login_required
+def unsubscribe(request, subscription_id):
+    subscription = UserFollows.objects.get(id=subscription_id)
+    if subscription.user == request.user:
+        subscription.delete()
+    return redirect('subscription')

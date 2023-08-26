@@ -25,4 +25,4 @@ class NewReviewForm(forms.ModelForm):
 
 class FollowUserForm(forms.Form):
     follow_user = forms.CharField(
-        label="Suivre d'autres utilisateurs", max_length=100)
+        label="Suivre d'autres utilisateurs", max_length=100, widget=forms.TextInput(attrs={'value': ''}))
