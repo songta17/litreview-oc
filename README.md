@@ -36,23 +36,30 @@ python manage.py runserver
 
 ## TODO
 
-- [] système d'authentification et d'inscription
-- [] créer un ticket pour demander des critiquess de livres ou d'articles
-- [] publier des critiques de livres ou d'articles
+- [] Ajouter css
+- [x] système d'authentification et d'inscription
+- [x] créer un ticket pour demander des critiquess de livres ou d'articles
+- [x] publier des critiques de livres ou d'articles
 - Sur la page du flux:
-- [] voir ses reviews et ses tickets
-- [] voir les reviews et tickets des personnes que l'user suit (follow)
-- [] les avis en réponse à ses propres tickets
+- [x] voir ses reviews et ses tickets
+- [x] voir les reviews et tickets des personnes que l'user suit (follow)
+- [x] les avis en réponse à ses propres tickets
 - [] créer seeds
-- [] dans le readme, indiquer des logins utilisables pour les tests du client
+- [x] dans le readme, indiquer des logins utilisables pour les tests du client
 - Intégration
-- [] page d'accueil
-- [] formulaire d'inscription
-- [] flux
-- [] onglet d'abonnements
-- [] créer un ticket
-- [] créer une critique (pas en réponse à un ticket)
-- [] créer une critique (en réponses à un ticket)
-- [] voir vos propress posts
-- [] modifier votre propre critique
-- [] modifier vore propre ticket
+- [x] page d'accueil
+- [x] formulaire d'inscription
+- [x] flux
+- [x] onglet d'abonnements
+- [x] créer un ticket
+- [x] créer une critique (pas en réponse à un ticket)
+- [x] créer une critique (en réponses à un ticket)
+- [x] voir vos propres posts
+- [x] modifier votre propre critique
+- [x] modifier vore propre ticket
+
+## User
+
+- sundae (Azerty123456)
+- max (Azerty123456)
+- xavier (Azerty123456)

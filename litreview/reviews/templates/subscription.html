@@ -4,18 +4,39 @@
     <h1>Abonnements</h1>
 
     <h2>Suivre d'autres utilisateurs</h2>
-    <!-- TODO FORM -->
     <form method="POST">
         {% csrf_token %}
-        {{ FollowUserForm.follow_user.label_tag }}
         {{ FollowUserForm.follow_user }}
-        <button type="submit">Rechercher</button>
+        <button type="submit">Envoyer</button>
     </form>
 
+    {% if FollowUserForm.follow_user.errors %}
+    <div>
+        {{ FollowUserForm.follow_user.errors }}
+        {% if followed_username %}
+        Vous suivez déjà cet utilisateur ({{ followed_username }}).
+        {% endif %}
+    </div>
+    {% endif %}
+
     <h2>Abonnements</h2>
-    <!-- subscription in subscriptions -->
+    {% for subscription in subscriptions %}
+        <li>
+            {{ subscription.followed_user.username }}
+            <form method="POST" action="{% url 'unsubscribe' subscription.id %}">
+                {% csrf_token %}
+                <button type="submit">Supprimer</button>
+            </form>
+        </li>
+    {% endfor %}
 
     <h2>Abonnés</h2>
-    <!-- subscriber in subscribers -->
+    <ul>
+        {% for follower in followers %}
+        <li>
+            {{ follower.user.username }}
+        </li>
+        {% endfor %}
+    </ul>
   {% endif %}
 {% endblock content %}
