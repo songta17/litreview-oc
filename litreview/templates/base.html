@@ -1,22 +1,27 @@
+{% load static %}
 <html>
-
     <head>
         <title>Litreview</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
-
     <body>
-        <h1>LitReview</h1>
-            {% if user.is_authenticated %}
-                <nav>
-                    <ul>
-                        <li><a href="{% url 'feed' %}">Flux</a></li>
-                        <li><a href="{% url 'my_posts' %}">Mes Posts</a></li>
-                        <li><a href="{% url 'subscription' %}">Abonnements</a></li>
-                        <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
-                    </ul>
-                </nav>
-            {% endif %}
+        {% if user.is_authenticated %}
+        <header>
+            <div class="logo">
+                LITREVIEW
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'feed' %}">Flux</a></li>
+                    <li><a href="{% url 'my_posts' %}">Mes Posts</a></li>
+                    <li><a href="{% url 'subscription' %}">Abonnements</a></li>
+                    <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% else %}
+        <header class="header-with-border-center">LITREVIEW</header>
+        {% endif %}
         {% block content %}{% endblock content %}
     </body>
-
 </html>

@@ -1,33 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-    <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Modifier votre critique</h1>
-    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
-        <h2>Vous êtes en train de poster en réponse à</h2>
-        <div style="border: 1px solid black; padding: 10px; margin: 10px;">
-            {% if item.user == request.user %}
-            <p>Vous avez demandé une critique</p>
-            {% else %}
-            <p>{{ ticket.user }} a demandé une critique</p>
-            {% endif %}
-            <p>{{ ticket.formatted_time_created }}</p>
-            <p>{{ ticket.title }}</p>
-            <p>{{ ticket.description }}</p>
-            <p>
-                {% if ticket.image_exists %}
-                <img src="{{ ticket.image.url }}" alt="Ticket Image">
-                {% endif %}
-            </p>
+
+<div class="create-ticket-container">
+    <div class="form">
+        <h1>Modifier votre critique</h1>
+        <div class="form-container">
+            <div class="form-container-inside">
+                Vous êtes en train de poster en réponse à
+                <div class="form-container-inside-content">
+                    <div class='feed-content-top'>
+                        {% if ticket.user == request.user %}
+                        <span class="feed-author">Vous avez demandé une critique</span>
+                        {% else %}
+                        <span class="feed-author">{{ ticket.user }} a demandé une critique</span>
+                        {% endif %}
+
+                        <span class="feed-date">{{ ticket.formatted_time_created }}</span>
+                    </div>
+                    <p>{{ ticket.title }}</p>
+                    <p>{{ ticket.description }}</p>
+                    <p>
+                        {% if ticket.image_exists %}
+                        <img src="{{ ticket.image.url }}" alt="Ticket Image">
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
-        <h2>Critique</h2>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ update_form.as_p }}
-            <button type="submit">Enregistrer</button>
-        </form>
+        <div class="form-container">
+            <h2>Critique</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ update_form.as_p }}
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
     </div>
 {% endif %}
 {% endblock content %}

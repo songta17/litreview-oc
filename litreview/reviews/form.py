@@ -16,11 +16,14 @@ class NewTicketForm(forms.ModelForm):
 
 class NewReviewForm(forms.ModelForm):
     rating = forms.ChoiceField(widget=forms.RadioSelect(
-        attrs={'class': 'radio-input'}), choices=Review.RATING_CHOICES)
+        attrs={'class': 'vertical-radio'}), choices=Review.RATING_CHOICES)
 
     class Meta:
         model = Review
         fields = ['headline', 'rating', 'body']
+        labels = {
+            'rating': 'Note',
+        }
 
 
 class FollowUserForm(forms.Form):

@@ -34,32 +34,9 @@ python manage.py runserver
 
 - Se rendre à l'adresse url locale http://127.0.0.1:8000/
 
-## TODO
-
-- [] Ajouter css
-- [x] système d'authentification et d'inscription
-- [x] créer un ticket pour demander des critiquess de livres ou d'articles
-- [x] publier des critiques de livres ou d'articles
-- Sur la page du flux:
-- [x] voir ses reviews et ses tickets
-- [x] voir les reviews et tickets des personnes que l'user suit (follow)
-- [x] les avis en réponse à ses propres tickets
-- [] créer seeds
-- [x] dans le readme, indiquer des logins utilisables pour les tests du client
-- Intégration
-- [x] page d'accueil
-- [x] formulaire d'inscription
-- [x] flux
-- [x] onglet d'abonnements
-- [x] créer un ticket
-- [x] créer une critique (pas en réponse à un ticket)
-- [x] créer une critique (en réponses à un ticket)
-- [x] voir vos propres posts
-- [x] modifier votre propre critique
-- [x] modifier vore propre ticket
-
 ## User
 
-- sundae (Azerty123456)
-- max (Azerty123456)
-- xavier (Azerty123456)
+- jack_oneil (password: Azerty123456)
+- samantha_carter (password: Azerty123456)
+- Tealc (password: Azerty123456)
+- daniel_jackson (password: Azerty123456)

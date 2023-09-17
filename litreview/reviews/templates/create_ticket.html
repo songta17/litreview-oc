@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-    <p>Vous êtes connecté en tant que {{ request.user }}!</p>
-    <h1>Créer un tickets</h1>
-    <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enregistrer</button>
-    </form>
+    <div class="create-ticket-container">
+        <div class="form">
+            <h1>Créer un tickets</h1>
+            <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+    </div>
 {% endif %}
 {% endblock content %}
