@@ -1,0 +1,434 @@
+body {
+   margin: 0;
+   padding: 0;
+}
+
+header {
+    padding: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(70, 70, 70);
+    display: flex;
+    justify-content: center;
+}
+
+.header-with-border {
+    display: flex;
+    justify-content: center;
+}
+
+
+.header-with-border-center {
+    display: flex;
+    justify-content: center;
+}
+
+/* .logo {
+    
+} */
+
+.menu {
+    float: left;
+    position: absolute;
+    right: 10px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.menu a:hover {
+    color: #007bff;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.feed-btn-container {
+    padding: 20px 0;
+}
+
+.feed-container-content {
+    width: 800px;
+    border: 1px solid rgb(175, 175, 175);
+    padding: 10px;
+    margin: 10px;
+}
+
+.feed-container-content-inside {
+    width: 760px;
+    border: 1px solid rgb(175, 175, 175);
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-container-inside {
+    width: 610px;
+}
+
+.form-container-inside-content {
+    width: 565px;
+    border: 1px solid rgb(175, 175, 175);
+    padding: 10px;
+    margin: 10px;
+}
+
+.feed-content-top {
+    display: flex;
+    justify-content: space-between;
+}
+.feed-author {
+    font-size: 12px;
+}
+
+.feed-date {
+    font-size: 12px;
+}
+
+.btn-create-review {
+    position: relative;
+    left: 500px;
+}
+
+.btn-delete-review {
+    position: relative;
+    left: 510px;
+}
+
+.follower-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.follow-add-user {
+    margin: 20px 0;
+    width: 80%;
+    /* padding: 0 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(56, 30, 128); */
+}
+
+.zouzou {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(56, 30, 128); */
+}
+
+.follow-users {
+    /* margin: 20px 0; */
+    width: 80%;
+    /* padding: 20px; */
+    /* background-color: rgb(62, 50, 117); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inside-follow-users {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.delete {
+    padding: 0 20px;
+    border-left: 1px solid rgb(175, 175, 175);
+}
+
+.delete-container {
+    margin: 50px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 175, 175);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: inherit;
+}
+
+.follow-users ul {
+    width: 800px;
+    margin: 0 20px;
+    list-style-type : none;
+    list-style-position: inside;
+    padding: 0;
+    border-top: 1px solid rgb(175, 175, 175);
+    border-left: 1px solid rgb(175, 175, 175);
+    border-right: 1px solid rgb(175, 175, 175);
+}
+
+.follow-users li {
+    font-size: 16px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.followers {
+    margin: 20px 0;
+    width: 80%;
+    /* padding: 20px; */
+    /* background-color: rgb(95, 25, 89); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.followers ul {
+    width: 800px;
+    margin: 0 20px;
+    list-style-type : none;
+    list-style-position: inside;
+    padding: 0;
+    border-top: 1px solid rgb(175, 175, 175);
+    border-left: 1px solid rgb(175, 175, 175);
+    border-right: 1px solid rgb(175, 175, 175);
+}
+
+.followers li {
+    font-size: 16px;
+    padding-left: 20px;
+    border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+
+h2 {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.create-ticket-container {
+    margin: 50px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 175, 175);
+}
+
+.create-review-container {
+    margin: 50px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid rgb(175, 175, 175);
+}
+
+.form {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px 30px 10px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+}
+
+.form input, .form label {
+  display: block;
+   width: 600px;
+}
+
+.form input, .form label {
+  display: block;
+   width: 600px;
+   height: 35px;
+}
+
+.form textarea, .form label {
+  display: block;
+   width: 600px;
+
+}
+
+.vertical-radio input {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical-radio label {
+    display: inline-block;
+    margin-right: 10px; 
+}
+
+.vertical-radio input[type="radio"] {
+    width: 12px;  
+    height: 12px;
+} 
+
+.create-ticket-inside {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-header {
+    font-weight: bold;
+}
+
+.form-container {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.subscribe-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 0;
+    justify-content: space-around;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 0;
+    justify-content: space-around;
+}
+
+.subscribe-redirection{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-signup {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    border: 1px solid rgb(170, 168, 168);
+    background-color: rgb(255, 255, 255);
+}
+
+.btn-login {
+    float: right;
+}
+
+.btn-signup  {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-signup:hover {
+    background-color: #e0e0e0;
+}
+
+.login-input {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 250px;
+    margin: 10px 0;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-subscribe {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-subscribe:hover {
+    background-color: #e0e0e0;
+}
+
+
+.btn-login {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #e0e0e0;
+}

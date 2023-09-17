@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-    <p>Vous êtes connecté en tant que {{ request.user }}!</p>
+<div class="create-ticket-container">
+    <div class="form">
     <h1>Créer une critique</h1>
     <form method="POST" action="{% url 'create_review_and_ticket' %}" enctype="multipart/form-data">
-        <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+        <div class="form-container">
             Livre / Article
             {{ ticket_form.as_p }}
         </div>
         {% csrf_token %}
-        <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+        <div class="form-container">
             Critique
             {{ review_form.as_p }}
             <button type="submit">Enregistrer</button>
         </div>
     </form>
+</div>
 {% endif %}
 {% endblock content %}
