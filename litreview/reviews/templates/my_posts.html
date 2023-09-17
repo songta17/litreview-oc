@@ -36,6 +36,17 @@
             </div>
             <p>{{ item.headline }} - {{ item.rating_display }}</p>
             <p>{{ item.body }}</p>
+            <div class="feed-container-content-inside">
+                <div class="feed-content-top">
+                    <span class="feed-author">Ticket: Vous</span>
+                    <span class="feed-date">{{ item.ticket.formatted_time_created }}</span>         
+                </div>
+                <p>{{ item.ticket.title }}</p>
+                <p>{{ item.ticket.description }}</p>
+                {% if item.ticket.image_exists %}
+                <img src="{{ item.ticket.image.url }}" alt="Image du Ticket associé">
+                {% endif %}
+            </div>
             <a href="{% url 'update_review' item.id %}">
                 <button class="btn-create-review">Modifier</button>
             </a>
